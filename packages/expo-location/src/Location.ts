@@ -27,6 +27,7 @@ import {
   LocationGeofencingEventType,
   LocationGeofencingRegionState,
   LocationGeocodingOptions,
+  LocationServicesEnabledEvent,
 } from './Location.types';
 import { LocationEventEmitter } from './LocationEventEmitter';
 import {
@@ -107,8 +108,8 @@ export async function getLastKnownPositionAsync(
  * @return A promise which fulfills with a [`LocationSubscription`](#locationsubscription) object.
  */
 export function addLocationServicesEnabledListener(
-  listener: (enabled: boolean) => void
-): Subscription {
+  listener: (status: LocationServicesEnabledEvent) => void
+): Subscription | undefined {
   return LocationEventEmitter.addListener('Expo.locationServicesEnabledDidChange', listener);
 }
 

@@ -275,6 +275,9 @@ export declare type LocationObjectCoords = {
  * Represents `watchPositionAsync` callback.
  */
 export declare type LocationCallback = (location: LocationObject) => any;
+export declare type LocationServicesEnabledEvent = {
+    locationServicesEnabled: boolean;
+};
 /**
  * Represents the object containing details about location provider.
  */
