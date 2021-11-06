@@ -57,6 +57,19 @@ export async function getLastKnownPositionAsync(options = {}) {
 }
 // @needsAudit
 /**
+ * Subscribe to service enabled updates from the device. Please note that updates will only occur while the
+ * application is in the foreground. To get location updates while in background you'll need to use
+ * [Location.startLocationUpdatesAsync](#locationstartlocationupdatesasynctaskname-options).
+ * @param options
+ * @param callback This function is called on each location update. It receives an object of type
+ * [`LocationObject`](#locationobject) as the first argument.
+ * @return A promise which fulfills with a [`LocationSubscription`](#locationsubscription) object.
+ */
+export function addLocationServicesEnabledListener(listener) {
+    return LocationEventEmitter.addListener('Expo.locationServicesEnabledDidChange', listener);
+}
+// @needsAudit
+/**
  * Subscribe to location updates from the device. Please note that updates will only occur while the
  * application is in the foreground. To get location updates while in background you'll need to use
  * [Location.startLocationUpdatesAsync](#locationstartlocationupdatesasynctaskname-options).

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.hardware.GeomagneticField;
+import android.location.LocationManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -62,6 +63,7 @@ import expo.modules.location.exceptions.LocationRequestRejectedException;
 import expo.modules.location.exceptions.LocationSettingsUnsatisfiedException;
 import expo.modules.location.exceptions.LocationUnauthorizedException;
 import expo.modules.location.exceptions.LocationUnavailableException;
+import expo.modules.location.LocationServicesEnabledReceiver;
 import expo.modules.location.taskConsumers.GeofencingTaskConsumer;
 import expo.modules.location.taskConsumers.LocationTaskConsumer;
 import io.nlopez.smartlocation.SmartLocation;
@@ -146,6 +148,11 @@ public class LocationModule extends ExportedModule implements LifecycleEventList
 
     if (mUIManager != null) {
       mUIManager.registerLifecycleEventListener(this);
+    }
+
+    if (mContext != null)
+    {
+      mContext.registerReceiver(LocationServicesEnabledReceiver(mEventEmitter), LocationManager.MODE_CHANGED_ACTION);
     }
   }
 

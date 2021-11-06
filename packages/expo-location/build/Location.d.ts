@@ -1,4 +1,4 @@
-import { PermissionStatus, PermissionResponse, PermissionHookOptions } from 'expo-modules-core';
+import { PermissionStatus, PermissionResponse, PermissionHookOptions, Subscription } from 'expo-modules-core';
 import { LocationAccuracy, LocationCallback, LocationGeocodedAddress, LocationGeocodedLocation, LocationHeadingCallback, LocationHeadingObject, LocationLastKnownOptions, LocationObject, LocationOptions, LocationPermissionResponse, LocationProviderStatus, LocationRegion, LocationSubscription, LocationTaskOptions, LocationActivityType, LocationGeofencingEventType, LocationGeofencingRegionState, LocationGeocodingOptions } from './Location.types';
 import { LocationEventEmitter } from './LocationEventEmitter';
 import { setGoogleApiKey } from './LocationGoogleGeocoding';
@@ -36,6 +36,16 @@ export declare function getCurrentPositionAsync(options?: LocationOptions): Prom
  * accuracy.
  */
 export declare function getLastKnownPositionAsync(options?: LocationLastKnownOptions): Promise<LocationObject | null>;
+/**
+ * Subscribe to service enabled updates from the device. Please note that updates will only occur while the
+ * application is in the foreground. To get location updates while in background you'll need to use
+ * [Location.startLocationUpdatesAsync](#locationstartlocationupdatesasynctaskname-options).
+ * @param options
+ * @param callback This function is called on each location update. It receives an object of type
+ * [`LocationObject`](#locationobject) as the first argument.
+ * @return A promise which fulfills with a [`LocationSubscription`](#locationsubscription) object.
+ */
+export declare function addLocationServicesEnabledListener(listener: (enabled: boolean) => void): Subscription;
 /**
  * Subscribe to location updates from the device. Please note that updates will only occur while the
  * application is in the foreground. To get location updates while in background you'll need to use
