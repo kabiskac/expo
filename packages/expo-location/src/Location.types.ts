@@ -301,6 +301,10 @@ export type LocationObjectCoords = {
  */
 export type LocationCallback = (location: LocationObject) => any;
 
+export type LocationServicesEnabledEvent = {
+  locationServicesEnabled: boolean;
+};
+
 // @needsAudit
 /**
  * Represents the object containing details about location provider.

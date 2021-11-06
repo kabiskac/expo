@@ -6,6 +6,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.hardware.GeomagneticField;
 import android.location.LocationManager;
@@ -152,7 +153,9 @@ public class LocationModule extends ExportedModule implements LifecycleEventList
 
     if (mContext != null)
     {
-      mContext.registerReceiver(LocationServicesEnabledReceiver(mEventEmitter), LocationManager.MODE_CHANGED_ACTION);
+      IntentFilter ifilter = new IntentFilter();
+      ifilter.addAction(LocationManager.MODE_CHANGED_ACTION);
+      mContext.registerReceiver(new LocationServicesEnabledReceiver(mEventEmitter), ifilter);
     }
   }
 
