@@ -3,7 +3,7 @@ title: Environment variables in Expo
 sidebar_title: Environment variables
 ---
 
-> Are you using [EAS Build](/build/introduction/)? The [documentation about build secrets](/build-reference/variables.md) explains how to work with sensitive values that you would not include in your source code and Git repository.
+> Are you using [EAS Build](/build/introduction/)? The [EAS Build documentation about environment variables build secrets](/build-reference/variables.md) explains how to work with sensitive values that you would not include in your source code and Git repository. It also explains how to set environment variables for build profiles.
 
 Environment variables are global values that are defined in your system. Without these variables, your operating system wouldn't know what to do when you execute a command like `expo start`. Under the hood, it uses the [`PATH`](http://www.linfo.org/path_env_var.html) variable to fetch a list of directories to search for the `expo` executable.
 
@@ -13,7 +13,7 @@ Because they are defined globally, these variables are useful to change the beha
 
 In the app manifest, there is also a `.extra` property. Unlike `.env`, this property is included when you publish your project with `expo publish` or `expo build`. The contents of the `.extra` property are taken from your app manifest. By default, this does not add any environment variables, but we can make that happen with the [dynamic app manifest configuration](../workflow/configuration.md#app-config).
 
-Below you can see an example of the dynamic **app.config.js** manifest. It's similar to the **app.json**, but written in JavaScript instead of JSON. The manifest is loaded when starting or publishing your app and has access to the environment variables using [`process.env`](https://nodejs.org/dist/latest/docs/api/process.html#process_process_env). With this we can configure the `.extra.enableComments` property without having to change the code itself, like `COOLAPP_COMMENTS=true; expo start`.
+Below you can see an example of the dynamic **app.config.js** manifest. It's similar to the **app.json**, but written in JavaScript instead of JSON. The manifest is loaded when starting or publishing your app and has access to the environment variables using [`process.env`](https://nodejs.org/dist/latest/docs/api/process.html#process_process_env). With this we can configure the `.extra.enableComments` property without having to change the code itself, like `COOLAPP_COMMENTS=true expo start`.
 
 ```js
 export default {

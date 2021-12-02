@@ -32,6 +32,20 @@ internal final class Conversions {
     }
   }
 
+  static func fromNSObject(_ object: Any) -> Any {
+    switch object {
+    case let object as NSArray:
+      return object.map { Conversions.fromNSObject($0) }
+    case let object as NSDictionary:
+      let keyValuePairs: [(String, Any)] = object.map { ($0 as! String, Conversions.fromNSObject($1)) }
+      return Dictionary(uniqueKeysWithValues: keyValuePairs)
+    case is NSNull:
+      return Optional<Any>.none as Any
+    default:
+      return object
+    }
+  }
+
   /**
    Picks values under given keys from the dictionary, casted to a specific type. Can throw errors when
    - The dictionary is missing some of the given keys (`MissingKeysError`)
@@ -186,6 +200,15 @@ internal final class Conversions {
     let keys: [String]
     var description: String {
       "Missing keys \(formatKeys(keys)) of type `\(ValueType.self)`"
+    }
+  }
+
+  /**
+   An error that is thrown when null value is tried to be casted to non-optional type.
+   */
+  internal struct NullCastError<TargetType>: CodedError {
+    var description: String {
+      "Cannot cast null value to non-optional `\(TargetType.self)`"
     }
   }
 

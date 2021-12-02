@@ -4,13 +4,26 @@
 
 ### 🛠 Breaking changes
 
+- Remove deprecated `Constants.deviceId`. ([#15280](https://github.com/expo/expo/pull/15280) by [@Simek](https://github.com/Simek))
+- Remove legacy `Constants.linkingUrl` alias. ([#15280](https://github.com/expo/expo/pull/15280) by [@Simek](https://github.com/Simek))
+
 ### 🎉 New features
+
+### 🐛 Bug fixes
+
+### 💡 Others
+
+- Add missing `null` to the `Constants.buildNumber` type. ([#15280](https://github.com/expo/expo/pull/15280) by [@Simek](https://github.com/Simek))
+
+## 12.2.0 — 2021-11-17
 
 ### 🐛 Bug fixes
 
 - Fix NODE_BINARY not found build error when using nvm via zsh ([#14895](https://github.com/expo/expo/pull/14895) by [@filipengberg](https://github.com/filipengberg))
 
 ### 💡 Others
+
+- Extract nested objects from current types to new, separate types - `ExpoGoPackagerOpts` and `ManifestExtra`. ([#15113](https://github.com/expo/expo/pull/15113) by [@Simek](https://github.com/Simek))
 
 ## 12.1.3 — 2021-10-22
 

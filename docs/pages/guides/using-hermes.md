@@ -3,7 +3,7 @@ title: Using Hermes Engine
 sidebar_title: Using Hermes
 ---
 
-> Hermes is supported for apps built with [EAS Build](https://docs.expo.dev/build/introduction/). There are no plans to backport support to `expo build`. [Jump to "Limitations"](#limitations).
+> Hermes is supported for apps built with [EAS Build](/build/introduction). There are no plans to backport support to `expo build`. [Jump to "Limitations"](#limitations).
 
 [Hermes](https://hermesengine.dev/) is a JavaScript engine optimized for React Native. By compiling JavaScript into bytecode ahead of time, Hermes can improve your app start-up time. The binary size of Hermes is also smaller than other JavaScript engines, such as JavaScriptCore (JSC). It also uses less memory at runtime, which is particularly valuable on lower-end Android devices.
 
@@ -118,20 +118,21 @@ You may want to use Hermes on one platform and JSC on another. One way to do thi
 
 Publishing updates with `expo publish` and `expo export` will generate Hermes bytecode bundles and their source maps.
 
-Please note that the Hermes bytecode format may change between different versions of `hermes-engine` — an update produced for a specific version of Hermes will not run on a different version of Hermes. Updating the Hermes version can be thought of in the same way as updating any other native module, and so if you update the `hermes-engine` version you should also update the `runtimeVersion` in **app.json**. If you don't do this, your app may crash on launch because the update may be loaded by an existing binary that uses an older version of `hermes-engine` that is incompatible with the updated bytecode format. See ["Update Compatibility"](https://docs.expo.dev/bare/updating-your-app/#update-compatibility) for more information.
+Please note that the Hermes bytecode format may change between different versions of `hermes-engine` — an update produced for a specific version of Hermes will not run on a different version of Hermes. Updating the Hermes version can be thought of in the same way as updating any other native module, and so if you update the `hermes-engine` version you should also update the `runtimeVersion` in **app.json**. If you don't do this, your app may crash on launch because the update may be loaded by an existing binary that uses an older version of `hermes-engine` that is incompatible with the updated bytecode format. See ["Update Compatibility"](/bare/updating-your-app/#update-compatibility) for more information.
 
 ## JavaScript inspector for Hermes
 
-To debug JavaScript code running with Hermes, you can start your project with `expo start` then press `j` to open the inspector in Google Chrome or Microsoft Edge. _This is only supported for debug builds._
+To debug JavaScript code running with Hermes, you can start your project with `expo start` then press `j` to open the JavaScript inspector in Google Chrome or Microsoft Edge. _This is only supported for debug builds._
 
-
-Alternatively, you can use Hermes inspector with the following tools:
+Alternatively, you can use the JavaScript inspector from the following tools:
 
 - [Open Google Chrome DevTools manually](https://reactnative.dev/docs/hermes#debugging-js-on-hermes-using-google-chromes-devtools)
 - [Flipper](https://fbflipper.com/)
+
+> 💡 [Development builds](/development/introduction.md) built with `expo-dev-client` simplify this process by integrating directly with the JavaScript inspector in Hermes.
 
 ## Limitations
 
 ### Standalone apps created with `expo build` are not supported
 
-The classic build system [isn't flexible enough](https://blog.expo.dev/expo-managed-workflow-in-2021-5b887bbf7dbb) to support using Hermes for some apps and not for others. You will need to use the new build system, [EAS Build](https://docs.expo.dev/build/introduction/), to use Hermes in your standalone apps.
+The classic build system [isn't flexible enough](https://blog.expo.dev/expo-managed-workflow-in-2021-5b887bbf7dbb) to support using Hermes for some apps and not for others. You will need to use the new build system, [EAS Build](/build/introduction), to use Hermes in your standalone apps.

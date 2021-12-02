@@ -9,6 +9,20 @@ import CoreGraphics
 /// As an example, when the `CGPoint` type is used as an argument type, its instance can be
 /// created from an array of two doubles or an object with `x` and `y` fields.
 
+// MARK: - Foundation
+
+extension URL: ConvertibleArgument {
+  public static func convert(from value: Any?) throws -> Self {
+    if let uri = value as? String, let url = URL(string: uri) {
+      // `URL(string:)` is an optional init but it doesn't imply it's a valid URL,
+      // so here we don't check for the correctness of the URL.
+      // If it has no scheme, we assume it was the file path.
+      return url.scheme != nil ? url : URL(fileURLWithPath: uri)
+    }
+    throw Conversions.ConvertingError<URL>(value: value)
+  }
+}
+
 // MARK: - UIKit
 
 extension UIColor: ConvertibleArgument {
@@ -18,7 +32,7 @@ extension UIColor: ConvertibleArgument {
     }
     if let components = value as? [Double] {
       let alpha = components.count > 3 ? components[3] : 1.0
-      return Self.init(red: components[0], green: components[1], blue: components[2], alpha: alpha)
+      return Self.init(red: CGFloat(components[0]), green: CGFloat(components[1]), blue: CGFloat(components[2]), alpha: CGFloat(alpha))
     }
     if let value = value as? Int {
       return try Conversions.toColor(argb: UInt64(value)) as! Self
